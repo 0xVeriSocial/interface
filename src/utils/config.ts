@@ -1,0 +1,11 @@
+const config = {
+  PROFILE_CONTRACT_ADDRESS:
+    process.env.NEXT_PUBLIC_PROFILE_CONTRACT_ADDRESS || "",
+  ALCHEMY_ID: process.env.NEXT_PUBLIC_ALCHEMY_ID || "",
+  SUBGRAPH_URL: process.env.NEXT_PUBLIC_SUBGRAPH || "",
+  BACKEND_API_URL: process.env.NEXT_PUBLIC_BACKEND_API_URL || "",
+  WALLET_CONNECT_PROJECTID:
+    process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECTID || "",
+};
+
+export default config;

@@ -1,0 +1,11 @@
+export const SET_GITHUB = "SET_GITHUB";
+export const SET_TWITTER = "SET_TWITTER";
+export const SET_TELEGRAM = "SET_TELEGRAM";
+export const SET_INSTAGRAM = "SET_INSTAGRAM";
+export const SET_DISCORD = "SET_DISCORD";
+export const SET_ALL = "SET_ALL";
+
+export const UPDATE_WORLDID_VERIFIED = "UPDATE_WORLDID_VERIFIED";
+export const UPDATE_WORLDID_SUBINFO = "UPDATE_WORLDID_SUBINFO";
+export const NEXT_PAGE = "NEXT_PAGE";
+export const JUMP_TO_PAGE = "JUMP_TO_PAGE";
