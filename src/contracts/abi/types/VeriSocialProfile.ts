@@ -41,6 +41,7 @@ export interface VeriSocialProfileInterface extends utils.Interface {
     "safeTransferFrom(address,address,uint256,bytes)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
     "setTokenURI(uint256,string)": FunctionFragment;
+    "setTokenURI(address,string)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
     "tokenURI(uint256)": FunctionFragment;
@@ -62,7 +63,8 @@ export interface VeriSocialProfileInterface extends utils.Interface {
       | "safeTransferFrom(address,address,uint256)"
       | "safeTransferFrom(address,address,uint256,bytes)"
       | "setApprovalForAll"
-      | "setTokenURI"
+      | "setTokenURI(uint256,string)"
+      | "setTokenURI(address,string)"
       | "supportsInterface"
       | "symbol"
       | "tokenURI"
@@ -107,8 +109,12 @@ export interface VeriSocialProfileInterface extends utils.Interface {
     values: [string, boolean]
   ): string;
   encodeFunctionData(
-    functionFragment: "setTokenURI",
+    functionFragment: "setTokenURI(uint256,string)",
     values: [BigNumberish, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setTokenURI(address,string)",
+    values: [string, string]
   ): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
@@ -156,7 +162,11 @@ export interface VeriSocialProfileInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setTokenURI",
+    functionFragment: "setTokenURI(uint256,string)",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setTokenURI(address,string)",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -373,8 +383,19 @@ export interface VeriSocialProfile extends BaseContract {
      * @param cid cid of the token
      * @param tokenId token id
      */
-    setTokenURI(
+    "setTokenURI(uint256,string)"(
       tokenId: BigNumberish,
+      cid: string,
+      overrides?: Overrides & { from?: string }
+    ): Promise<ContractTransaction>;
+
+    /**
+     * Update token CID
+     * @param cid cid of the token
+     * @param userAddress token id
+     */
+    "setTokenURI(address,string)"(
+      userAddress: string,
       cid: string,
       overrides?: Overrides & { from?: string }
     ): Promise<ContractTransaction>;
@@ -522,8 +543,19 @@ export interface VeriSocialProfile extends BaseContract {
    * @param cid cid of the token
    * @param tokenId token id
    */
-  setTokenURI(
+  "setTokenURI(uint256,string)"(
     tokenId: BigNumberish,
+    cid: string,
+    overrides?: Overrides & { from?: string }
+  ): Promise<ContractTransaction>;
+
+  /**
+   * Update token CID
+   * @param cid cid of the token
+   * @param userAddress token id
+   */
+  "setTokenURI(address,string)"(
+    userAddress: string,
     cid: string,
     overrides?: Overrides & { from?: string }
   ): Promise<ContractTransaction>;
@@ -662,8 +694,19 @@ export interface VeriSocialProfile extends BaseContract {
      * @param cid cid of the token
      * @param tokenId token id
      */
-    setTokenURI(
+    "setTokenURI(uint256,string)"(
       tokenId: BigNumberish,
+      cid: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * Update token CID
+     * @param cid cid of the token
+     * @param userAddress token id
+     */
+    "setTokenURI(address,string)"(
+      userAddress: string,
       cid: string,
       overrides?: CallOverrides
     ): Promise<void>;
@@ -858,8 +901,19 @@ export interface VeriSocialProfile extends BaseContract {
      * @param cid cid of the token
      * @param tokenId token id
      */
-    setTokenURI(
+    "setTokenURI(uint256,string)"(
       tokenId: BigNumberish,
+      cid: string,
+      overrides?: Overrides & { from?: string }
+    ): Promise<BigNumber>;
+
+    /**
+     * Update token CID
+     * @param cid cid of the token
+     * @param userAddress token id
+     */
+    "setTokenURI(address,string)"(
+      userAddress: string,
       cid: string,
       overrides?: Overrides & { from?: string }
     ): Promise<BigNumber>;
@@ -1014,8 +1068,19 @@ export interface VeriSocialProfile extends BaseContract {
      * @param cid cid of the token
      * @param tokenId token id
      */
-    setTokenURI(
+    "setTokenURI(uint256,string)"(
       tokenId: BigNumberish,
+      cid: string,
+      overrides?: Overrides & { from?: string }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Update token CID
+     * @param cid cid of the token
+     * @param userAddress token id
+     */
+    "setTokenURI(address,string)"(
+      userAddress: string,
       cid: string,
       overrides?: Overrides & { from?: string }
     ): Promise<PopulatedTransaction>;

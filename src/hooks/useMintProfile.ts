@@ -54,12 +54,11 @@ const useMintProfile = () => {
     let estimatedGas = 200000;
 
     try {
-      const estimatedGasFromContract = await contract.estimateGas.setTokenURI(
-        cid,
-        {
-          from: account,
-        }
-      );
+      const estimatedGasFromContract = await contract.estimateGas[
+        "setTokenURI(address,string)"
+      ](account, cid, {
+        from: account,
+      });
       estimatedGas = estimatedGasFromContract.mul(11).div(10).toNumber();
       console.log("estimatedGas for useMintProfile", estimatedGas);
     } catch (error: any) {
@@ -223,14 +222,18 @@ const useMintProfile = () => {
     );
 
     try {
-      // const tx = await contract.setTokenURI(cid, transactionOptions);
+      const tx = await contract["setTokenURI(address,string)"](
+        address,
+        cid,
+        transactionOptions
+      );
 
-      // const receipt = await tx.wait();
-      // const txnHash = await receipt.transactionHash;
+      const receipt = await tx.wait();
+      const txnHash = await receipt.transactionHash;
 
-      // console.log("TransactionHash from useMintProfile", txnHash);
+      console.log("TransactionHash from useMintProfile", txnHash);
 
-      // setTransactionHash(txnHash);
+      setTransactionHash(txnHash);
       setError("");
     } catch (error: any) {
       console.log("Minting Error", error.message);

@@ -3,15 +3,11 @@ import { PropsWithChildren } from "react";
 import {
   SET_ALL,
   SET_GITHUB,
+  SET_IMAGE,
   SET_INSTAGRAM,
   SET_TELEGRAM,
   SET_TWITTER,
 } from "../actionType";
-import {
-  AccountsMetaMapping,
-  AccountsType,
-  IAccounts,
-} from "@/utils/linkedAccounts";
 
 type SET_GITHUB_ACTION = {
   type: "SET_GITHUB";
@@ -40,6 +36,12 @@ type SET_ALL_ACTION = {
   telegram: string;
   instagram: string;
   cid: string;
+  uploadedImage: string;
+};
+
+type SET_IMAGE_ACTION = {
+  type: "SET_IMAGE";
+  rawImage: any;
 };
 
 export type ActionType =
@@ -53,7 +55,8 @@ type Action =
   | SET_TWITTER_ACTION
   | SET_TELEGRAM_ACTION
   | SET_INSTAGRAM_ACTION
-  | SET_ALL_ACTION;
+  | SET_ALL_ACTION
+  | SET_IMAGE_ACTION;
 
 type State = {
   github: string;
@@ -61,6 +64,8 @@ type State = {
   telegram: string;
   instagram: string;
   cid: string;
+  rawImage: any;
+  uploadedImage: string;
 };
 
 type Dispatch = (action: Action) => void;
@@ -71,6 +76,8 @@ const initialState: State = {
   telegram: "",
   instagram: "",
   cid: "",
+  rawImage: null,
+  uploadedImage: "",
 } as const;
 
 const AccountsContext = React.createContext<
@@ -108,7 +115,8 @@ function linkedAccountsReducer(state: State, action: Action): State {
       } as State;
     }
     case SET_ALL: {
-      const { github, twitter, telegram, instagram, cid } = action;
+      const { github, twitter, telegram, instagram, cid, uploadedImage } =
+        action;
       return {
         ...state,
         github,
@@ -116,6 +124,14 @@ function linkedAccountsReducer(state: State, action: Action): State {
         telegram,
         instagram,
         cid,
+        uploadedImage,
+      };
+    }
+    case SET_IMAGE: {
+      const { rawImage } = action;
+      return {
+        ...state,
+        rawImage,
       };
     }
     default: {

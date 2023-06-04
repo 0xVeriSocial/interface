@@ -58,7 +58,8 @@ export const generateSocialProof = async (
   twitter: string,
   instagram: string,
   telegram: string,
-  worldId: string
+  worldId: string,
+  image: string
 ): Promise<IResponse> => {
   try {
     // construct request body
@@ -83,6 +84,10 @@ export const generateSocialProof = async (
     if (worldId) {
       requestBody["worldId"] = worldId;
     }
+
+    requestBody["image"] =
+      image ||
+      "https://bafkreiccgw6xxhg2pvntkwd3gng2lqrzsowwb24lzhjiqzeeu4hc2t2kmm.ipfs.nftstorage.link/";
 
     const response = await axios.post(
       `${BACKEND_BASE_URL}/generate`,

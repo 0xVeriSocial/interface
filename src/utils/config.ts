@@ -6,6 +6,7 @@ const config = {
   BACKEND_API_URL: process.env.NEXT_PUBLIC_BACKEND_API_URL || "",
   WALLET_CONNECT_PROJECTID:
     process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECTID || "",
+  NFTSTORAGE_APIKEY: process.env.NEXT_PUBLIC_NFTSTORAGE_APIKEY || "",
 };
 
 export default config;

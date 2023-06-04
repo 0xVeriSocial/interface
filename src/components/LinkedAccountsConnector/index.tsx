@@ -38,6 +38,7 @@ const LinkedAccountsConnector: FC<IProps> = ({ type }) => {
           type: currentAccount.dispatchType,
           handler: username,
         });
+        localStorage.removeItem(currentAccount.localStorage);
       }
     };
 

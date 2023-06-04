@@ -2,4 +2,3 @@
 /* tslint:disable */
 /* eslint-disable */
 export { VeriSocialProfile__factory } from "./VeriSocialProfile__factory";
-export { VeriSocialWorldID__factory } from "./VeriSocialWorldID__factory";

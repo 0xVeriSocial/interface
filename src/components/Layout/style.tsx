@@ -18,7 +18,7 @@ export const LayoutContent = styled.div`
   position: relative;
   width: 100%;
   min-height: calc(100vh - 60px);
-  margin-top: 40px;
+  margin-top: 60px;
   padding: 20px;
   background: ${theme.colors.backgroundOne};
 

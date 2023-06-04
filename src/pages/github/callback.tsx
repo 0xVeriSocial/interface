@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { LOCAL_STORAGE_GITHUB_ACCESS_TOKEN } from "@/utils/constants";
+import Spinner from "@/components/Loaders/Spinner";
 
 const CallbackPage = () => {
   const router = useRouter();
@@ -17,7 +18,7 @@ const CallbackPage = () => {
     }
   }, [username]);
 
-  return <div>REDIRECTING</div>;
+  return <Spinner />;
 };
 
 export default CallbackPage;

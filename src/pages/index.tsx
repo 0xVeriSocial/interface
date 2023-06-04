@@ -1,3 +1,4 @@
+import Spinner from "@/components/Loaders/Spinner";
 import { usePage } from "@/context/PageContext";
 import { useWorldID } from "@/context/WorldIDContext";
 import { JUMP_TO_PAGE } from "@/context/actionType";
@@ -44,7 +45,7 @@ export default function Home() {
 
   if (domLoaded) {
     if (fetchingProfile) {
-      return <p>Loading</p>;
+      return <Spinner />;
     }
 
     if (PageState.page === PageNav.CONNECT_WALLET) {

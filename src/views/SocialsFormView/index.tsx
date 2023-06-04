@@ -14,6 +14,12 @@ import { useWorldID } from "@/context/WorldIDContext";
 import useMintProfile from "@/hooks/useMintProfile";
 import { generateSocialProof } from "@/services/internal";
 import toast from "react-hot-toast";
+import CustomDropzone from "@/components/CustomDropzone";
+import { uploadFile } from "@/services/nftstorage";
+
+const constructIpfsUrl = (cid: string) => {
+  return `https://${cid}.ipfs.nftstorage.link/`;
+};
 
 const SocialsFormView = () => {
   const { state: LinkedAccountsState } = useLinkedAccounts();
@@ -29,12 +35,20 @@ const SocialsFormView = () => {
   } = useMintProfile();
 
   const handleMint = async () => {
+    let imageUrl = "";
+    if (LinkedAccountsState.rawImage) {
+      const uploadedResponse = await uploadFile(LinkedAccountsState.rawImage);
+      if (uploadedResponse.data && !uploadedResponse.error) {
+        imageUrl = constructIpfsUrl(uploadedResponse.data);
+      }
+    }
     const { data } = await generateSocialProof(
       LinkedAccountsState.github,
       LinkedAccountsState.twitter,
       LinkedAccountsState.instagram,
       LinkedAccountsState.telegram,
-      WorldIDState.credential_type
+      WorldIDState.credential_type,
+      imageUrl
     );
     console.log("new cid", data);
     await submitProof(data);
@@ -42,12 +56,20 @@ const SocialsFormView = () => {
   };
 
   const handleUpdate = async () => {
+    let imageUrl = "";
+    if (LinkedAccountsState.rawImage) {
+      const uploadedResponse = await uploadFile(LinkedAccountsState.rawImage);
+      if (uploadedResponse.data && !uploadedResponse.error) {
+        imageUrl = constructIpfsUrl(uploadedResponse.data);
+      }
+    }
     const { data } = await generateSocialProof(
       LinkedAccountsState.github,
       LinkedAccountsState.twitter,
       LinkedAccountsState.instagram,
       LinkedAccountsState.telegram,
-      WorldIDState.credential_type
+      WorldIDState.credential_type,
+      LinkedAccountsState.uploadedImage
     );
     console.log("update cid", data);
     await replaceProof(data);
@@ -63,6 +85,8 @@ const SocialsFormView = () => {
         <LinkedAccountsConnectorDummy type={AccountsType.INSTAGRAM} />
         <LinkedAccountsOTPConnector type={AccountsType.TELEGRAM} />
 
+        {/* <input type="file" id="avatar" name="avatar" accept="image/*" /> */}
+        <CustomDropzone />
         {LinkedAccountsState.cid ? (
           <ActionButton
             label="Update"
@@ -73,7 +97,7 @@ const SocialsFormView = () => {
           <ActionButton
             label="Mint"
             loading={loading}
-            handleClick={handleMint}
+            handleClick={handleUpdate}
           />
         )}
       </GenericContent>

@@ -33,6 +33,7 @@
     "prettier": "^2.8.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-hot-toast": "^2.4.1",
     "styled-components": "^5.3.9",
     "typechain": "^8.2.0",

@@ -9,7 +9,6 @@ import {
   MainNavigationTitle,
 } from "./style";
 import MainLogo from "@/assets/logo/TransparentBg.svg";
-import MainLogo2 from "@/assets/logo/TransparentBgWithPadding.svg";
 import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -32,7 +31,7 @@ const Navigation: FC = () => {
     return (
       <MainNavigationContainer>
         <MainNavigationLogo>
-          {/* <Image src={MainLogo2} alt="VeriSocial Logo" width={64} height={64} /> */}
+          <Image src={MainLogo} alt="VeriSocial Logo" width={64} height={64} />
           <MainNavigationTitle>VeriSocial</MainNavigationTitle>
         </MainNavigationLogo>
         {address && (

@@ -27,10 +27,6 @@ export const MainNavigationLogo = styled.div`
   justify-content: flex-start;
 
   cursor: default;
-
-  @media screen and (min-width: ${theme.breakpoints.medium}) {
-    margin-bottom: 20px;
-  }
 `;
 
 export const MainNavigationTitle = styled.h2`
